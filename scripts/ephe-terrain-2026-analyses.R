@@ -22,6 +22,7 @@ library(hms)
 library(ade4)
 library(suncalc)
 library(dplyr)
+library(ggeffects)
 
 ## data-------------------------------------------------------------------------
 
@@ -250,3 +251,95 @@ ggsave(
   height = 6, 
   dpi = 300
 )
+
+## boxplots per indices --------------------------------------------------------
+
+all.acou.sub$habitat <- factor(
+  all.acou.sub$habitat,
+  levels = c("open", "semi-open", "clearing",  "clear forest","dense forest")
+)
+all.acou.sub$PERIOD <- factor(all.acou.sub$PERIOD)
+
+bx.aci <- ggplot(all.acou.sub)+
+  aes(x = habitat, y = ACI)+
+  geom_boxplot()+
+  facet_wrap(~ PERIOD)+
+  theme_minimal()
+
+bx.ndsi <- ggplot(all.acou.sub)+
+  aes(x = habitat, y = NDSI)+
+  geom_boxplot()+
+  facet_wrap(~ PERIOD)+
+  theme_minimal()
+
+bx.aci
+bx.ndsi
+
+## some stats : do soundscapes differ btw habitats? ----------------------------
+
+mycols <- c("goldenrod","#440154")
+
+# ACI
+aci.lm <- lm(ACI~habitat*PERIOD,data = all.acou.sub)
+
+par(mfrow=c(2,2))
+plot(aci.lm)
+
+summary(aci.lm)
+p.mod.aci <- ggpredict(aci.lm, terms = c("habitat","PERIOD" ))
+
+plot(p.mod.aci, show_residuals = TRUE) +
+  scale_color_manual(values = mycols) +
+  scale_fill_manual(values = mycols)
+
+# NDSI
+
+ndsi.lm <- lm(NDSI~habitat*PERIOD,data = all.acou.sub)
+
+par(mfrow=c(2,2))
+plot(aci.lm)
+
+summary(ndsi.lm)
+p.mod.ndsi <- ggpredict(ndsi.lm, terms = c("habitat","PERIOD" ))
+
+plot(p.mod.ndsi, show_residuals = TRUE) +
+  scale_color_manual(values = mycols) +
+  scale_fill_manual(values = mycols)
+
+## some stats : do time series differ among habitats? --------------------------
+
+all.acou.sub$num.dat <- as.numeric(all.acou.sub$START_dt)
+
+library(mgcv)
+
+# ACI
+
+ts.aci <- gam(ACI~habitat + s(num.dat,by = habitat), data = all.acou.sub)
+summary(ts.aci)
+
+ggplot(all.acou.sub, aes(x = START_dt, y = ACI, color = habitat)) +
+  geom_point(alpha = 0.2, size = 1) +
+  geom_smooth(method = "gam", formula = y ~ s(as.numeric(x)), se = FALSE, linewidth = 1.2) +
+  scale_color_viridis_d(option = "viridis", direction = -1) +
+  theme_minimal() +
+  labs(
+    x = "Date",
+    y = "ACI",
+    color = "Habitat"
+  )
+                       
+# NDSI
+
+ts.ndsi <- gam(NDSI~habitat + s(num.dat,by = habitat), data = all.acou.sub)
+summary(ts.ndsi)
+
+ggplot(all.acou.sub, aes(x = START_dt, y = NDSI, color = habitat)) +
+  geom_point(alpha = 0.2, size = 1) +
+  geom_smooth(method = "gam", formula = y ~ s(as.numeric(x)), se = FALSE, linewidth = 1.2) +
+  scale_color_viridis_d(option = "viridis", direction = -1) +
+  theme_minimal() +
+  labs(
+    x = "Date",
+    y = "NDSI",
+    color = "Habitat"
+  )
