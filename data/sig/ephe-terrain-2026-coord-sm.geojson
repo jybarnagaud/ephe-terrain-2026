@@ -1,0 +1,12 @@
+{
+"type": "FeatureCollection",
+"name": "ephe-terrain-2026-coord-sm",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Name": "5 septembre 2026, 10:48", "description": "SM316 haie prairie semi ouvert", "timestamp": "2026-09-05T08:48:45", "begin": null, "end": null, "altitudeMode": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ 5.573187, 45.209235, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "5 septembre 2026, 11:10", "description": "Les Vernes\n312\nouvert agricole", "timestamp": "2026-09-05T09:10:33", "begin": null, "end": null, "altitudeMode": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ 5.527775, 45.158422, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "5 septembre 2026, 14:48", "description": "sous chateaujulien \n455", "timestamp": "2026-09-05T12:48:55", "begin": null, "end": null, "altitudeMode": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ 5.492406, 45.040608, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Forêt", "description": null, "timestamp": "2026-09-05T12:49:31", "begin": null, "end": null, "altitudeMode": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ 5.483914, 45.047389, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "5 septembre 2026, 14:56", "description": null, "timestamp": "2026-09-05T12:56:23", "begin": null, "end": null, "altitudeMode": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ 5.491275, 45.040403, 0.0 ] } }
+]
+}
