@@ -23,6 +23,7 @@ library(ade4)
 library(suncalc)
 library(dplyr)
 library(ggeffects)
+library(patchwork)
 
 ## data-------------------------------------------------------------------------
 
@@ -152,41 +153,6 @@ indices.msd.meta <- merge(indices.msd,meta,by.x = "SM",by.y = "sm.code")
 # make maps - all combined
 
 indices_sf <- st_as_sf(indices.msd.meta, coords = c("x", "y"), crs = 4326)
-
-m.aci.all <- mapview(
-  indices_sf, 
-  zcol = "ACI.avg", 
-  map.types = "OpenStreetMap",
-  col.regions = viridis(10, option = "inferno")
-)
-
-
-s.aci.all <- mapview(
-  indices_sf, 
-  zcol = "ACI.sd", 
-  map.types = "OpenStreetMap",
-  col.regions = viridis(10, option = "inferno")
-)
-
-m.ndsi.all <- mapview(
-  indices_sf, 
-  zcol = "NDSI.avg", 
-  map.types = "OpenStreetMap",
-  col.regions = viridis(10, option = "inferno")
-)
-
-s.ndsi.all <- mapview(
-  indices_sf, 
-  zcol = "NDSI.sd", 
-  map.types = "OpenStreetMap",
-  col.regions = viridis(10, option = "inferno")
-)
-
-mapshot(m.aci.all, file = "outputs/map-aci-mean.png", delay = 5)
-mapshot(s.aci.all, file = "outputs/map-aci-sd.png", delay = 5)
-
-# make maps for all / day / night
-
 indices_sf_day <- subset(indices_sf,PERIOD == "day")
 indices_sf_night <- subset(indices_sf,PERIOD == "night")
 
@@ -343,3 +309,4 @@ ggplot(all.acou.sub, aes(x = START_dt, y = NDSI, color = habitat)) +
     y = "NDSI",
     color = "Habitat"
   )
+
