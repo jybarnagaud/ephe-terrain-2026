@@ -353,4 +353,4 @@ ggplot(all.acou.sub, aes(x = START_dt, y = NDSI, color = habitat)) +
   scale_color_viridis_d(option = "viridis", direction = -1) +
   theme_minimal() +
   labs(x = "Date", y = "NDSI", color = "Habitat")
-ggsave("outputs/ephe-terrain-2026-lm-ndsi.png",width = 10, height = 5)
+ggsave("outputs/ephe-terrain-2026-gam-ndsi.png",width = 10, height = 5)
