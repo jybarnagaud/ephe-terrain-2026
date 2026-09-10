@@ -199,7 +199,7 @@ m.aci.all <- ggplot(indices_sf) +
   geom_sf(aes(color = ACI.avg), size = 4) +
   scale_color_viridis_c(option = "plasma") +
   theme_minimal() +
-  labs(title = "period= all", color = "mean ACI")+
+  labs(title = "jour+nuit", color = "ACI moyen")+
   theme(legend.position = "none")
 
 m.aci.day <- ggplot(indices_sf_day) +
@@ -207,7 +207,7 @@ m.aci.day <- ggplot(indices_sf_day) +
   geom_sf(aes(color = ACI.avg), size = 4) +
   scale_color_viridis_c(option = "plasma") +
   theme_minimal() +
-  labs(title = "period= day", color = "mean ACI")+
+  labs(title = "jour", color = "ACI moyen")+
   theme(legend.position = "none")
 
 m.aci.night <- ggplot(indices_sf_night) +
@@ -215,14 +215,14 @@ m.aci.night <- ggplot(indices_sf_night) +
   geom_sf(aes(color = ACI.avg), size = 4) +
   scale_color_viridis_c(option = "plasma") +
   theme_minimal() +
-  labs(title = "period= night", color = "mean ACI")
+  labs(title = "nuit", color = "ACI moyen")
 
 m.ndsi.all <- ggplot(indices_sf) +
   annotation_map_tile(type = "osm", zoom = 13) +
   geom_sf(aes(color = NDSI.avg), size = 4) +
   scale_color_viridis_c(option = "plasma") +
   theme_minimal() +
-  labs(title = "period= all", color = "mean NDSI")+
+  labs(title = "jour+nuit", color = "NDSI moyen")+
   theme(legend.position = "none")
 
 m.ndsi.day <- ggplot(indices_sf_day) +
@@ -230,7 +230,7 @@ m.ndsi.day <- ggplot(indices_sf_day) +
   geom_sf(aes(color = NDSI.avg), size = 4) +
   scale_color_viridis_c(option = "plasma") +
   theme_minimal() +
-  labs(title = "period= day", color = "mean NDSI")+
+  labs(title = "jour", color = "NDSI moyen")+
   theme(legend.position = "none")
 
 m.ndsi.night <- ggplot(indices_sf_night) +
@@ -238,7 +238,7 @@ m.ndsi.night <- ggplot(indices_sf_night) +
   geom_sf(aes(color = NDSI.avg), size = 4) +
   scale_color_viridis_c(option = "plasma") +
   theme_minimal() +
-  labs(title = "period= night", color = "mean NDSI")
+  labs(title = "nuit", color = "NDSI moyen")
 
 plots.aci <- m.aci.all + m.aci.day + m.aci.night
 plots.aci
