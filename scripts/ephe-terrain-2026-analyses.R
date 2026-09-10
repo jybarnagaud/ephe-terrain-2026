@@ -268,20 +268,38 @@ all.acou.sub$habitat <- factor(
 )
 all.acou.sub$PERIOD <- factor(all.acou.sub$PERIOD)
 
+# translate to french for student's presentation
+
+all.acou.sub <- all.acou.sub %>%
+  mutate(habitat_fr = recode(habitat,
+                      "open" = "ouvert",
+                      "semi-open" = "semi-ouvert",
+                      "clearing" = "clairière",
+                      "clear forest" = "forêt claire", 
+                      "dense forest" = "forêt dense"))
+
+
+all.acou.sub <- all.acou.sub %>%
+  mutate(period_fr = recode(PERIOD,
+                             "day" = "jour",
+                             "night" = "nuit"))
+
 bx.aci <- ggplot(all.acou.sub) +
-  aes(x = habitat, y = ACI) +
-  geom_boxplot() +
-  facet_wrap( ~ PERIOD) +
-  theme_minimal()
+  aes(x = habitat_fr, y = ACI) +
+  geom_boxplot(fill = "gray90") +
+  facet_wrap( ~ period_fr) +
+  theme_minimal()+ 
+labs(x = "habitat",y="ACI")
 
 bx.ndsi <- ggplot(all.acou.sub) +
   aes(x = habitat, y = NDSI) +
-  geom_boxplot() +
-  facet_wrap( ~ PERIOD) +
+  geom_boxplot(fill = "gray90") +
+  facet_wrap( ~ period_fr) +
   theme_minimal()
 
 bx.aci
 ggsave("outputs/ephe-terrain-2026-boxplot-aci.png",width = 10, height = 5)
+
 bx.ndsi
 ggsave("outputs/ephe-terrain-2026-boxplot-ndsi.png",width = 10, height = 5)
 
