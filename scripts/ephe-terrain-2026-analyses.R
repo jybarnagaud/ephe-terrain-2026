@@ -292,7 +292,7 @@ bx.aci <- ggplot(all.acou.sub) +
 labs(x = "habitat",y="ACI")
 
 bx.ndsi <- ggplot(all.acou.sub) +
-  aes(x = habitat, y = NDSI) +
+  aes(x = habitat_fr, y = NDSI) +
   geom_boxplot(fill = "gray90") +
   facet_wrap( ~ period_fr) +
   theme_minimal()
