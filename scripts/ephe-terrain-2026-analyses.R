@@ -196,48 +196,52 @@ indices_sf_night <- subset(indices_sf, PERIOD == "night")
 
 m.aci.all <- ggplot(indices_sf) +
   annotation_map_tile(type = "osm", zoom = 13) +
-  geom_sf(aes(color = ACI.avg), size = 2) +
+  geom_sf(aes(color = ACI.avg), size = 4) +
   scale_color_viridis_c(option = "plasma") +
   theme_minimal() +
-  labs(title = "period= all", color = "mean ACI")
+  labs(title = "period= all", color = "mean ACI")+
+  theme(legend.position = "none")
 
 m.aci.day <- ggplot(indices_sf_day) +
   annotation_map_tile(type = "osm", zoom = 13) +
-  geom_sf(aes(color = ACI.avg), size = 2) +
+  geom_sf(aes(color = ACI.avg), size = 4) +
   scale_color_viridis_c(option = "plasma") +
   theme_minimal() +
-  labs(title = "period= day", color = "mean ACI")
+  labs(title = "period= day", color = "mean ACI")+
+  theme(legend.position = "none")
 
 m.aci.night <- ggplot(indices_sf_night) +
   annotation_map_tile(type = "osm", zoom = 13) +
-  geom_sf(aes(color = ACI.avg), size = 2) +
+  geom_sf(aes(color = ACI.avg), size = 4) +
   scale_color_viridis_c(option = "plasma") +
   theme_minimal() +
   labs(title = "period= night", color = "mean ACI")
 
 m.ndsi.all <- ggplot(indices_sf) +
   annotation_map_tile(type = "osm", zoom = 13) +
-  geom_sf(aes(color = NDSI.avg), size = 2) +
+  geom_sf(aes(color = NDSI.avg), size = 4) +
   scale_color_viridis_c(option = "plasma") +
   theme_minimal() +
-  labs(title = "period= all", color = "mean NDSI")
+  labs(title = "period= all", color = "mean NDSI")+
+  theme(legend.position = "none")
 
 m.ndsi.day <- ggplot(indices_sf_day) +
   annotation_map_tile(type = "osm", zoom = 13) +
-  geom_sf(aes(color = NDSI.avg), size = 2) +
+  geom_sf(aes(color = NDSI.avg), size = 4) +
   scale_color_viridis_c(option = "plasma") +
   theme_minimal() +
-  labs(title = "period= day", color = "mean NDSI")
+  labs(title = "period= day", color = "mean NDSI")+
+  theme(legend.position = "none")
 
 m.ndsi.night <- ggplot(indices_sf_night) +
   annotation_map_tile(type = "osm", zoom = 13) +
-  geom_sf(aes(color = NDSI.avg), size = 2) +
+  geom_sf(aes(color = NDSI.avg), size = 4) +
   scale_color_viridis_c(option = "plasma") +
   theme_minimal() +
   labs(title = "period= night", color = "mean NDSI")
 
 plots.aci <- m.aci.all + m.aci.day + m.aci.night
-
+plots.aci
 ggsave(
   filename = "outputs/aci-all-periods-map.png",
   plot = plots.aci,
@@ -247,7 +251,7 @@ ggsave(
 )
 
 plots.ndsi <- m.ndsi.all + m.ndsi.day + m.ndsi.night
-
+plots.ndsi
 ggsave(
   filename = "outputs/ndsi-all-periods-map.png",
   plot = plots.ndsi,
